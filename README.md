@@ -3,7 +3,7 @@
 A late-night theme for devs who run on coffee and prompts.
 
 Nightbrew is a dark theme for JetBrains IDEs (IntelliJ IDEA, WebStorm, PyCharm, Rider, GoLand, …).
-Soft blue-black surfaces, iOS-bright accents and calm contrast that stays easy on the eyes through long sessions.
+Soft blue-black surfaces, vivid accents and calm contrast that stays easy on the eyes through long sessions.
 
 <!-- TODO: add screenshots -->
 
@@ -31,8 +31,7 @@ so switching variants changes the mood, not how you read code.
 
 If Nightbrew makes your nights better, you can keep it brewing:
 
-[![Buy me a coffee on Ko-fi](https://img.shields.io/badge/Ko--fi-buy%20me%20a%20coffee-FF7AB6?logo=kofi&logoColor=white)](https://ko-fi.com/<ko-fi-username>)
-<!-- TODO: replace <ko-fi-username> -->
+[![Buy me a coffee on Ko-fi](https://img.shields.io/badge/Ko--fi-buy%20me%20a%20coffee-FF7AB6?logo=kofi&logoColor=white)](https://ko-fi.com/Q7K729C9FH)
 
 Getting **Nightbrew Pro** also supports development and unlocks the extra variants.
 

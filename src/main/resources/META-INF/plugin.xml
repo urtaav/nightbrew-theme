@@ -6,15 +6,14 @@
 
     <idea-version since-build="253"/>
 
-    <!-- TODO: replace <ko-fi-username> once the Ko-fi handle is known -->
     <description><![CDATA[
         <p><b>Nightbrew</b> — a late-night theme for devs who run on coffee and prompts.</p>
-        <p>Soft blue-black surfaces, iOS-bright accents and calm contrast for long sessions.</p>
+        <p>Soft blue-black surfaces, vivid accents and calm contrast for long sessions.</p>
         <br>
         <p>After installing, go to <i>Settings | Appearance &amp; Behavior | Appearance</i> and select <b>Nightbrew Cove</b>.</p>
         <br>
         <p>Want more moods? <b>Nightbrew Pro</b> adds Kiln (warm graphite &amp; terracotta) and Roast (coffee &amp; caramel).</p>
-        <p>Enjoying it? <a href="https://ko-fi.com/&lt;ko-fi-username&gt;">Buy me a coffee on Ko-fi</a>.</p>
+        <p>Enjoying it? <a href="https://ko-fi.com/Q7K729C9FH">Buy me a coffee on Ko-fi</a>.</p>
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
