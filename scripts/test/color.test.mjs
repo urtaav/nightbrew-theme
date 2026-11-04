@@ -13,3 +13,10 @@ test('hueDistance takes the short way around the color wheel', () => {
   assert.ok(hueDistance('#FF0000', '#FF0080') <= 31);
   assert.ok(hueDistance('#FF0000', '#FF0080') >= 29);
 });
+
+test('mix blends two colors by weight', async () => {
+  const { mix } = await import('../lib/color.mjs');
+  assert.equal(mix('#000000', '#FFFFFF', 0.5), '#808080');
+  assert.equal(mix('#FF0000', '#0000FF', 0), '#FF0000');
+  assert.equal(mix('#FF0000', '#0000FF', 1), '#0000FF');
+});

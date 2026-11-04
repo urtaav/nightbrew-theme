@@ -23,3 +23,11 @@ export function hueDistance(a, b) {
   const d = Math.abs(hue(a) - hue(b));
   return Math.min(d, 360 - d);
 }
+
+// Linear RGB blend; t=0 returns a, t=1 returns b.
+export function mix(a, b, t) {
+  const ca = channels(a);
+  const cb = channels(b);
+  const out = ca.map((c, i) => Math.round((c + (cb[i] - c) * t) * 255));
+  return `#${out.map((v) => v.toString(16).padStart(2, '0')).join('').toUpperCase()}`;
+}
