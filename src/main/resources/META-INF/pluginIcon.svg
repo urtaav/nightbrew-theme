@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <rect x="1" y="1" width="38" height="38" rx="9" fill="#16181E"/>
+  <!-- Crescent moon: a disc with an offset disc cut out -->
+  <mask id="cut">
+    <rect width="40" height="40" fill="#fff"/>
+    <circle cx="25" cy="16" r="10" fill="#000"/>
+  </mask>
+  <circle cx="19" cy="22" r="11" fill="#FF7AB6" mask="url(#cut)"/>
+  <!-- Steam curl rising from the crescent -->
+  <path d="M27 31c-3-3 3-5 0-8s3-5 0-8" fill="none" stroke="#7EE0B5" stroke-width="2.2" stroke-linecap="round"/>
+</svg>
