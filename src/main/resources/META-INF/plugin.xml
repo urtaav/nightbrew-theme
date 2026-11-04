@@ -6,12 +6,20 @@
 
     <idea-version since-build="253"/>
 
+    <!-- TODO: replace <ko-fi-username> once the Ko-fi handle is known -->
     <description><![CDATA[
-        <p>Nightbrew theme for JetBrains IDEs.</p>
+        <p><b>Nightbrew</b> — a late-night theme for devs who run on coffee and prompts.</p>
+        <p>Soft blue-black surfaces, iOS-bright accents and calm contrast for long sessions.</p>
+        <br>
+        <p>After installing, go to <i>Settings | Appearance &amp; Behavior | Appearance</i> and select <b>Nightbrew Cove</b>.</p>
+        <br>
+        <p>Want more moods? <b>Nightbrew Pro</b> adds Kiln (warm graphite &amp; terracotta) and Roast (coffee &amp; caramel).</p>
+        <p>Enjoying it? <a href="https://ko-fi.com/&lt;ko-fi-username&gt;">Buy me a coffee on Ko-fi</a>.</p>
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
+        <themeProvider id="714822e8-3651-48b5-b797-5b8f14cc9c5b" path="/nightbrew_cove.theme.json"/>
     </extensions>
 </idea-plugin>
