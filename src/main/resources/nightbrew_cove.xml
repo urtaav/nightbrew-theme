@@ -244,41 +244,165 @@
         <option name="FOREGROUND" value="FF5C5C"/>
       </value>
     </option>
+    <option name="JS.INSTANCE_MEMBER_FUNCTION">
+      <value>
+        <option name="FOREGROUND" value="6CB6FF"/>
+      </value>
+    </option>
+    <option name="JS.GLOBAL_FUNCTION">
+      <value>
+        <option name="FOREGROUND" value="6CB6FF"/>
+      </value>
+    </option>
+    <option name="KOTLIN_PACKAGE_FUNCTION_CALL">
+      <value>
+        <option name="FOREGROUND" value="6CB6FF"/>
+      </value>
+    </option>
+    <option name="ANNOTATION_NAME_ATTRIBUTES">
+      <value>
+        <option name="FOREGROUND" value="FFB86B"/>
+      </value>
+    </option>
+    <option name="PY.DECORATOR">
+      <value>
+        <option name="FOREGROUND" value="FFB86B"/>
+      </value>
+    </option>
+    <option name="YAML_ANCHOR">
+      <value>
+        <option name="FOREGROUND" value="FFB86B"/>
+      </value>
+    </option>
+    <option name="STATIC_FINAL_FIELD_ATTRIBUTES">
+      <value>
+        <option name="FOREGROUND" value="FFB86B"/>
+      </value>
+    </option>
+    <option name="TS.TYPE_PARAMETER">
+      <value>
+        <option name="FOREGROUND" value="B79CFF"/>
+      </value>
+    </option>
+    <option name="KOTLIN_TYPE_PARAMETER">
+      <value>
+        <option name="FOREGROUND" value="B79CFF"/>
+      </value>
+    </option>
+    <option name="TYPE_PARAMETER_NAME_ATTRIBUTES">
+      <value>
+        <option name="FOREGROUND" value="B79CFF"/>
+      </value>
+    </option>
+    <option name="PY.BUILTIN_NAME">
+      <value>
+        <option name="FOREGROUND" value="B79CFF"/>
+      </value>
+    </option>
+    <option name="XML_CUSTOM_TAG_NAME">
+      <value>
+        <option name="FOREGROUND" value="B79CFF"/>
+      </value>
+    </option>
+    <option name="HTML_CUSTOM_TAG_NAME">
+      <value>
+        <option name="FOREGROUND" value="B79CFF"/>
+      </value>
+    </option>
+    <option name="KOTLIN_NAMED_ARGUMENT">
+      <value>
+        <option name="FOREGROUND" value="F5E29A"/>
+      </value>
+    </option>
+    <option name="PY.KEYWORD_ARGUMENT">
+      <value>
+        <option name="FOREGROUND" value="F5E29A"/>
+      </value>
+    </option>
+    <option name="KOTLIN_LABEL">
+      <value>
+        <option name="FOREGROUND" value="FF7AB6"/>
+      </value>
+    </option>
+    <option name="PY.SELF_PARAMETER">
+      <value>
+        <option name="FOREGROUND" value="FF7AB6"/>
+      </value>
+    </option>
+    <option name="MARKDOWN_HEADER">
+      <value>
+        <option name="FOREGROUND" value="FF7AB6"/>
+        <option name="FONT_TYPE" value="1"/>
+      </value>
+    </option>
+    <option name="JS.GLOBAL_VARIABLE">
+      <value>
+        <option name="FOREGROUND" value="DDE3EE"/>
+      </value>
+    </option>
+    <option name="JS.LOCAL_VARIABLE">
+      <value>
+        <option name="FOREGROUND" value="DDE3EE"/>
+      </value>
+    </option>
+    <option name="KOTLIN_PROPERTY_WITH_BACKING_FIELD">
+      <value>
+        <option name="FOREGROUND" value="DDE3EE"/>
+      </value>
+    </option>
+    <option name="INSTANCE_FIELD_ATTRIBUTES">
+      <value>
+        <option name="FOREGROUND" value="DDE3EE"/>
+      </value>
+    </option>
+    <option name="STATIC_FIELD_ATTRIBUTES">
+      <value>
+        <option name="FOREGROUND" value="DDE3EE"/>
+        <option name="FONT_TYPE" value="2"/>
+      </value>
+    </option>
     <option name="ERRORS_ATTRIBUTES">
       <value>
         <option name="EFFECT_COLOR" value="FF5C5C"/>
         <option name="EFFECT_TYPE" value="2"/>
+        <option name="ERROR_STRIPE_COLOR" value="FF5C5C"/>
       </value>
     </option>
     <option name="WARNING_ATTRIBUTES">
       <value>
         <option name="EFFECT_COLOR" value="FFD36B"/>
         <option name="EFFECT_TYPE" value="2"/>
+        <option name="ERROR_STRIPE_COLOR" value="FFD36B"/>
       </value>
     </option>
     <option name="SEARCH_RESULT_ATTRIBUTES">
       <value>
         <option name="BACKGROUND" value="2C4056"/>
+        <option name="ERROR_STRIPE_COLOR" value="6CB6FF"/>
       </value>
     </option>
     <option name="TEXT_SEARCH_RESULT_ATTRIBUTES">
       <value>
         <option name="BACKGROUND" value="2C4056"/>
+        <option name="ERROR_STRIPE_COLOR" value="6CB6FF"/>
       </value>
     </option>
     <option name="WRITE_SEARCH_RESULT_ATTRIBUTES">
       <value>
         <option name="BACKGROUND" value="503144"/>
+        <option name="ERROR_STRIPE_COLOR" value="FF7AB6"/>
       </value>
     </option>
     <option name="IDENTIFIER_UNDER_CARET_ATTRIBUTES">
       <value>
         <option name="BACKGROUND" value="253447"/>
+        <option name="ERROR_STRIPE_COLOR" value="6CB6FF"/>
       </value>
     </option>
     <option name="WRITE_IDENTIFIER_UNDER_CARET_ATTRIBUTES">
       <value>
         <option name="BACKGROUND" value="402A39"/>
+        <option name="ERROR_STRIPE_COLOR" value="FF7AB6"/>
       </value>
     </option>
     <option name="MATCHED_BRACE_ATTRIBUTES">
@@ -296,16 +420,19 @@
     <option name="DIFF_INSERTED">
       <value>
         <option name="BACKGROUND" value="293C39"/>
+        <option name="ERROR_STRIPE_COLOR" value="7EE0B5"/>
       </value>
     </option>
     <option name="DIFF_MODIFIED">
       <value>
         <option name="BACKGROUND" value="253447"/>
+        <option name="ERROR_STRIPE_COLOR" value="6CB6FF"/>
       </value>
     </option>
     <option name="DIFF_DELETED">
       <value>
         <option name="BACKGROUND" value="402429"/>
+        <option name="ERROR_STRIPE_COLOR" value="FF5C5C"/>
       </value>
     </option>
     <option name="CONSOLE_NORMAL_OUTPUT">
@@ -323,9 +450,14 @@
         <option name="FOREGROUND" value="8A93A6"/>
       </value>
     </option>
+    <option name="CONSOLE_USER_INPUT">
+      <value>
+        <option name="FOREGROUND" value="7EE0B5"/>
+      </value>
+    </option>
     <option name="CONSOLE_BLACK_OUTPUT">
       <value>
-        <option name="FOREGROUND" value="111318"/>
+        <option name="FOREGROUND" value="6B7385"/>
       </value>
     </option>
     <option name="CONSOLE_RED_OUTPUT">
@@ -365,7 +497,7 @@
     </option>
     <option name="CONSOLE_DARKGRAY_OUTPUT">
       <value>
-        <option name="FOREGROUND" value="6B7385"/>
+        <option name="FOREGROUND" value="7A8396"/>
       </value>
     </option>
     <option name="CONSOLE_WHITE_OUTPUT">

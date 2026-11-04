@@ -62,3 +62,42 @@ test('errors get a wave underline in the error color', () => {
 test('no unresolved values leak into the xml', () => {
   assert.doesNotMatch(x, /undefined|NaN|null/);
 });
+
+const stripe = (name) => attr(name).match(/name="ERROR_STRIPE_COLOR" value="([0-9A-F]{6})"/)?.[1];
+
+test('overridden marker keys keep a scrollbar stripe', () => {
+  assert.equal(stripe('ERRORS_ATTRIBUTES'), hex(p.status.error));
+  assert.equal(stripe('WARNING_ATTRIBUTES'), hex(p.status.warning));
+  assert.equal(stripe('DIFF_INSERTED'), hex(p.status.added));
+  assert.equal(stripe('DIFF_MODIFIED'), hex(p.status.modified));
+  assert.equal(stripe('DIFF_DELETED'), hex(p.status.deleted));
+  for (const k of ['SEARCH_RESULT_ATTRIBUTES', 'TEXT_SEARCH_RESULT_ATTRIBUTES', 'WRITE_SEARCH_RESULT_ATTRIBUTES',
+    'IDENTIFIER_UNDER_CARET_ATTRIBUTES', 'WRITE_IDENTIFIER_UNDER_CARET_ATTRIBUTES']) assert.ok(stripe(k), k);
+});
+
+test('language keys that Darcula colors directly are remapped', () => {
+  assert.equal(fg('JS.INSTANCE_MEMBER_FUNCTION'), hex(p.syntax.function));
+  assert.equal(fg('KOTLIN_PACKAGE_FUNCTION_CALL'), hex(p.syntax.function));
+  assert.equal(fg('ANNOTATION_NAME_ATTRIBUTES'), hex(p.syntax.number));
+  assert.equal(fg('PY.DECORATOR'), hex(p.syntax.number));
+  for (const k of ['JS.GLOBAL_VARIABLE', 'JS.GLOBAL_FUNCTION', 'JS.LOCAL_VARIABLE', 'TS.TYPE_PARAMETER',
+    'KOTLIN_PROPERTY_WITH_BACKING_FIELD', 'KOTLIN_NAMED_ARGUMENT', 'KOTLIN_TYPE_PARAMETER', 'KOTLIN_LABEL',
+    'YAML_ANCHOR', 'MARKDOWN_HEADER', 'XML_CUSTOM_TAG_NAME', 'HTML_CUSTOM_TAG_NAME',
+    'INSTANCE_FIELD_ATTRIBUTES', 'STATIC_FIELD_ATTRIBUTES', 'STATIC_FINAL_FIELD_ATTRIBUTES', 'TYPE_PARAMETER_NAME_ATTRIBUTES',
+    'PY.SELF_PARAMETER', 'PY.KEYWORD_ARGUMENT', 'PY.BUILTIN_NAME', 'CONSOLE_USER_INPUT']) {
+    assert.ok(fg(k), k);
+  }
+});
+
+test('ANSI black stays visible on the editor background', () => {
+  assert.ok(contrastRatio(`#${fg('CONSOLE_BLACK_OUTPUT')}`, p.ui.bg) >= 3);
+});
+
+test('ANSI magenta stays magenta when the keyword color is orange', async () => {
+  const { hueDistance } = await import('../lib/color.mjs');
+  const warm = structuredClone(p);
+  warm.syntax.keyword = '#E07A5F';
+  warm.syntax.parameter = '#C7B8E6';
+  const m = renderSchemeXml(warm).match(/<option name="CONSOLE_MAGENTA_OUTPUT">[\s\S]*?FOREGROUND" value="([0-9A-F]{6})"/)[1];
+  assert.ok(hueDistance(`#${m}`, '#FF00FF') <= 60, m);
+});

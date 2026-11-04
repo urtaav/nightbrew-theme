@@ -18,6 +18,10 @@ Soft blue-black surfaces, iOS-bright accents and calm contrast that stays easy o
 Every variant uses the same color roles (keywords, functions, strings, types…),
 so switching variants changes the mood, not how you read code.
 
+## Notes
+
+- Nightbrew uses the classic New UI layout. When you select it, the IDE turns off the Islands layout. Islands variants are planned.
+
 ## Install
 
 1. `Settings | Plugins | Marketplace`, search **Nightbrew**, install.

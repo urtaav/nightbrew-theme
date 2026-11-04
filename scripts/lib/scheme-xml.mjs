@@ -6,13 +6,16 @@ const WAVE_UNDERSCORE = 2;
 
 const bare = (hex) => hex.slice(1).toUpperCase();
 
-function option(name, { fg, bg, font, effect, effectType } = {}) {
+function option(name, { fg, bg, font, effect, effectType, stripe } = {}) {
   const lines = [];
   if (fg) lines.push(`        <option name="FOREGROUND" value="${bare(fg)}"/>`);
   if (bg) lines.push(`        <option name="BACKGROUND" value="${bare(bg)}"/>`);
   if (font) lines.push(`        <option name="FONT_TYPE" value="${font}"/>`);
   if (effect) lines.push(`        <option name="EFFECT_COLOR" value="${bare(effect)}"/>`);
   if (effectType !== undefined) lines.push(`        <option name="EFFECT_TYPE" value="${effectType}"/>`);
+  // A key defined here replaces the parent's entry entirely, so the scrollbar
+  // marker must be restated or it disappears.
+  if (stripe) lines.push(`        <option name="ERROR_STRIPE_COLOR" value="${bare(stripe)}"/>`);
   return `    <option name="${name}">\n      <value>\n${lines.join('\n')}\n      </value>\n    </option>`;
 }
 
@@ -33,6 +36,15 @@ function syntaxMap(p) {
     [{ fg: p.ui.fg }, ['DEFAULT_IDENTIFIER', 'DEFAULT_INSTANCE_FIELD', 'DEFAULT_GLOBAL_VARIABLE', 'DEFAULT_TEMPLATE_LANGUAGE_COLOR']],
     [{ fg: p.ui.fg, font: ITALIC }, ['DEFAULT_STATIC_FIELD']],
     [{ fg: p.status.error }, ['DEFAULT_INVALID_STRING_ESCAPE', 'WRONG_REFERENCES_ATTRIBUTES']],
+    // Language keys that Darcula colors directly instead of inheriting DEFAULT_*.
+    [{ fg: s.function }, ['JS.INSTANCE_MEMBER_FUNCTION', 'JS.GLOBAL_FUNCTION', 'KOTLIN_PACKAGE_FUNCTION_CALL']],
+    [{ fg: s.number }, ['ANNOTATION_NAME_ATTRIBUTES', 'PY.DECORATOR', 'YAML_ANCHOR', 'STATIC_FINAL_FIELD_ATTRIBUTES']],
+    [{ fg: s.type }, ['TS.TYPE_PARAMETER', 'KOTLIN_TYPE_PARAMETER', 'TYPE_PARAMETER_NAME_ATTRIBUTES', 'PY.BUILTIN_NAME', 'XML_CUSTOM_TAG_NAME', 'HTML_CUSTOM_TAG_NAME']],
+    [{ fg: s.parameter }, ['KOTLIN_NAMED_ARGUMENT', 'PY.KEYWORD_ARGUMENT']],
+    [{ fg: s.keyword }, ['KOTLIN_LABEL', 'PY.SELF_PARAMETER']],
+    [{ fg: s.keyword, font: BOLD }, ['MARKDOWN_HEADER']],
+    [{ fg: p.ui.fg }, ['JS.GLOBAL_VARIABLE', 'JS.LOCAL_VARIABLE', 'KOTLIN_PROPERTY_WITH_BACKING_FIELD', 'INSTANCE_FIELD_ATTRIBUTES']],
+    [{ fg: p.ui.fg, font: ITALIC }, ['STATIC_FIELD_ATTRIBUTES']],
   ];
 }
 
@@ -41,16 +53,19 @@ function ansi(p) {
   const isBlue = (hex) => hueDistance(hex, '#0080FF') <= 40;
   const blue = isBlue(p.syntax.function) ? p.syntax.function : p.syntax.type;
   const cyan = mix(blue, p.syntax.string, 0.5);
+  // Warm palettes have an orange keyword; fall back to the lilac parameter color.
+  const isMagenta = (hex) => hueDistance(hex, '#FF00FF') <= 60;
+  const magenta = isMagenta(p.syntax.keyword) ? p.syntax.keyword : p.syntax.parameter;
   const map = {
-    BLACK: p.ui.panel,
+    BLACK: p.syntax.comment,
     RED: p.status.error,
     GREEN: p.syntax.string,
     YELLOW: p.status.warning,
     BLUE: blue,
-    MAGENTA: p.syntax.keyword,
+    MAGENTA: magenta,
     CYAN: cyan,
     GRAY: p.ui.fgMuted,
-    DARKGRAY: p.syntax.comment,
+    DARKGRAY: mix(p.syntax.comment, p.ui.fgMuted, 0.5),
     WHITE: p.ui.fg,
   };
   // Bright variants reuse the base color to keep the palette tight.
@@ -89,21 +104,22 @@ export function renderSchemeXml(p) {
   const attrs = [
     ['TEXT', { fg: ui.fg, bg: ui.bg }],
     ...syntaxMap(p).flatMap(([style, keys]) => keys.map((k) => [k, style])),
-    ['ERRORS_ATTRIBUTES', { effect: status.error, effectType: WAVE_UNDERSCORE }],
-    ['WARNING_ATTRIBUTES', { effect: status.warning, effectType: WAVE_UNDERSCORE }],
-    ['SEARCH_RESULT_ATTRIBUTES', { bg: tint(syntax.function) }],
-    ['TEXT_SEARCH_RESULT_ATTRIBUTES', { bg: tint(syntax.function) }],
-    ['WRITE_SEARCH_RESULT_ATTRIBUTES', { bg: tint(syntax.keyword) }],
-    ['IDENTIFIER_UNDER_CARET_ATTRIBUTES', { bg: tint(syntax.function, 0.18) }],
-    ['WRITE_IDENTIFIER_UNDER_CARET_ATTRIBUTES', { bg: tint(syntax.keyword, 0.18) }],
+    ['ERRORS_ATTRIBUTES', { effect: status.error, effectType: WAVE_UNDERSCORE, stripe: status.error }],
+    ['WARNING_ATTRIBUTES', { effect: status.warning, effectType: WAVE_UNDERSCORE, stripe: status.warning }],
+    ['SEARCH_RESULT_ATTRIBUTES', { bg: tint(syntax.function), stripe: syntax.function }],
+    ['TEXT_SEARCH_RESULT_ATTRIBUTES', { bg: tint(syntax.function), stripe: syntax.function }],
+    ['WRITE_SEARCH_RESULT_ATTRIBUTES', { bg: tint(syntax.keyword), stripe: syntax.keyword }],
+    ['IDENTIFIER_UNDER_CARET_ATTRIBUTES', { bg: tint(syntax.function, 0.18), stripe: syntax.function }],
+    ['WRITE_IDENTIFIER_UNDER_CARET_ATTRIBUTES', { bg: tint(syntax.keyword, 0.18), stripe: syntax.keyword }],
     ['MATCHED_BRACE_ATTRIBUTES', { fg: syntax.function, font: BOLD }],
     ['UNMATCHED_BRACE_ATTRIBUTES', { fg: status.error, font: BOLD }],
-    ['DIFF_INSERTED', { bg: tint(status.added, 0.18) }],
-    ['DIFF_MODIFIED', { bg: tint(status.modified, 0.18) }],
-    ['DIFF_DELETED', { bg: tint(status.deleted, 0.18) }],
+    ['DIFF_INSERTED', { bg: tint(status.added, 0.18), stripe: status.added }],
+    ['DIFF_MODIFIED', { bg: tint(status.modified, 0.18), stripe: status.modified }],
+    ['DIFF_DELETED', { bg: tint(status.deleted, 0.18), stripe: status.deleted }],
     ['CONSOLE_NORMAL_OUTPUT', { fg: ui.fg }],
     ['CONSOLE_ERROR_OUTPUT', { fg: status.error }],
     ['CONSOLE_SYSTEM_OUTPUT', { fg: ui.fgMuted }],
+    ['CONSOLE_USER_INPUT', { fg: syntax.string }],
     ...ansi(p),
   ];
 
