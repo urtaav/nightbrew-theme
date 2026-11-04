@@ -1,0 +1,17 @@
+<idea-plugin>
+    <id>io.github.urtaav.nightbrew</id>
+    <name>Nightbrew</name>
+    <category>UI</category>
+    <vendor url="https://github.com/urtaav/nightbrew-theme">urtaav</vendor>
+
+    <idea-version since-build="253"/>
+
+    <description><![CDATA[
+        <p>Nightbrew theme for JetBrains IDEs.</p>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+</idea-plugin>

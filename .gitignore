@@ -1,0 +1,14 @@
+# Build output
+build/
+out/
+.gradle/
+.intellijPlatform/
+.idea/
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.*
