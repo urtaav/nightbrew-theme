@@ -1,0 +1,7 @@
+{
+  "id": "cove",
+  "name": "Nightbrew Cove",
+  "ui": { "bg": "#16181E", "panel": "#111318", "line": "#1C1F27", "selection": "#1F3554", "border": "#23262F", "fg": "#DDE3EE", "fgMuted": "#8A93A6" },
+  "syntax": { "comment": "#6B7385", "keyword": "#FF7AB6", "function": "#6CB6FF", "string": "#7EE0B5", "number": "#FFB86B", "type": "#B79CFF", "parameter": "#F5E29A" },
+  "status": { "error": "#FF5C5C", "warning": "#FFD36B", "added": "#7EE0B5", "modified": "#6CB6FF", "deleted": "#FF5C5C" }
+}
