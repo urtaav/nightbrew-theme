@@ -1,0 +1,138 @@
+export const fileBase = (p) => `nightbrew_${p.id}`;
+
+// Builds the UI theme (*.theme.json). Values reference the named colors below
+// so each palette only has to supply roles, never per-component hex codes.
+export function renderThemeJson(p) {
+  const colors = {
+    accentColor: p.syntax.keyword,
+    backgroundColor: p.ui.bg,
+    panelColor: p.ui.panel,
+    lineColor: p.ui.line,
+    borderColor: p.ui.border,
+    foregroundColor: p.ui.fg,
+    infoForeground: p.ui.fgMuted,
+    selectionBackground: p.ui.selection,
+    selectionForeground: p.ui.fg,
+    hoverBackground: p.ui.line,
+    linkColor: p.syntax.function,
+    errorColor: p.status.error,
+    warningColor: p.status.warning,
+    addedColor: p.status.added,
+    modifiedColor: p.status.modified,
+    deletedColor: p.status.deleted,
+  };
+
+  const panel = { background: 'panelColor' };
+
+  const ui = {
+    '*': {
+      background: 'backgroundColor',
+      foreground: 'foregroundColor',
+      infoForeground: 'infoForeground',
+      selectionBackground: 'selectionBackground',
+      selectionForeground: 'selectionForeground',
+      selectionInactiveBackground: 'lineColor',
+      selectionBackgroundInactive: 'lineColor',
+      disabledBackground: 'backgroundColor',
+      inactiveBackground: 'backgroundColor',
+      borderColor: 'borderColor',
+      separatorColor: 'borderColor',
+      focusColor: 'accentColor',
+      focusedBorderColor: 'accentColor',
+      hoverBackground: 'hoverBackground',
+      errorForeground: 'errorColor',
+      acceleratorForeground: 'infoForeground',
+    },
+    ActionButton: { hoverBackground: 'hoverBackground', hoverBorderColor: 'hoverBackground', pressedBackground: 'selectionBackground' },
+    Button: {
+      startBackground: 'lineColor',
+      endBackground: 'lineColor',
+      startBorderColor: 'borderColor',
+      endBorderColor: 'borderColor',
+      default: {
+        foreground: 'backgroundColor',
+        startBackground: 'accentColor',
+        endBackground: 'accentColor',
+        startBorderColor: 'accentColor',
+        endBorderColor: 'accentColor',
+        focusedBorderColor: 'foregroundColor',
+      },
+    },
+    CheckBox: { 'Background.Selected': 'accentColor', 'Border.Selected': 'accentColor', 'Foreground.Selected': 'backgroundColor' },
+    ComboBox: { nonEditableBackground: 'lineColor', ArrowButton: { nonEditableBackground: 'lineColor' } },
+    EditorTabs: {
+      background: 'panelColor',
+      underlinedTabBackground: 'backgroundColor',
+      underlineColor: 'accentColor',
+      inactiveUnderlineColor: 'infoForeground',
+      hoverBackground: 'hoverBackground',
+      borderColor: 'borderColor',
+    },
+    List: { hoverBackground: 'hoverBackground' },
+    Tree: { hoverBackground: 'hoverBackground', modifiedItemForeground: 'modifiedColor' },
+    Table: { stripeColor: 'panelColor', hoverBackground: 'hoverBackground' },
+    MainToolbar: { ...panel, Icon: { hoverBackground: 'hoverBackground' }, Dropdown: { hoverBackground: 'hoverBackground' } },
+    TitlePane: panel,
+    ToolWindow: {
+      background: 'panelColor',
+      Header: { background: 'panelColor', inactiveBackground: 'panelColor' },
+      HeaderTab: { selectedInactiveBackground: 'lineColor', hoverBackground: 'hoverBackground', underlineColor: 'accentColor' },
+      Button: { selectedBackground: 'selectionBackground', hoverBackground: 'hoverBackground' },
+      Stripe: { background: 'panelColor' },
+    },
+    StatusBar: { background: 'panelColor', borderColor: 'borderColor', Widget: { hoverBackground: 'hoverBackground' } },
+    SearchEverywhere: {
+      Header: { background: 'panelColor' },
+      SearchField: { background: 'backgroundColor', borderColor: 'borderColor' },
+      Tab: { selectedBackground: 'selectionBackground' },
+    },
+    Popup: { background: 'panelColor', borderColor: 'borderColor', Header: { activeBackground: 'panelColor', inactiveBackground: 'panelColor' } },
+    ToolTip: { background: 'lineColor', borderColor: 'borderColor' },
+    Notification: {
+      background: 'lineColor',
+      borderColor: 'borderColor',
+      errorBackground: 'lineColor',
+      errorBorderColor: 'errorColor',
+      ToolWindow: { errorBorderColor: 'errorColor', warningBorderColor: 'warningColor' },
+    },
+    ProgressBar: { progressColor: 'accentColor', indeterminateStartColor: 'accentColor', indeterminateEndColor: 'linkColor', trackColor: 'lineColor' },
+    ScrollBar: {
+      Mac: { thumbColor: '#FFFFFF1F', hoverThumbColor: '#FFFFFF33', Transparent: { thumbColor: '#FFFFFF1F', hoverThumbColor: '#FFFFFF33' } },
+      thumbColor: '#FFFFFF1F',
+      hoverThumbColor: '#FFFFFF33',
+      Transparent: { thumbColor: '#FFFFFF1F', hoverThumbColor: '#FFFFFF33' },
+    },
+    Link: { activeForeground: 'linkColor', hoverForeground: 'linkColor', pressedForeground: 'linkColor', visitedForeground: 'linkColor' },
+    VersionControl: {
+      FileHistory: { Commit: { selectedBranchBackground: 'lineColor' } },
+      GitLog: { headIconColor: 'warningColor', localBranchIconColor: 'addedColor', remoteBranchIconColor: 'modifiedColor', tagIconColor: 'accentColor' },
+      Log: { Commit: { currentBranchBackground: 'lineColor', hoveredBackground: 'hoverBackground' } },
+    },
+    ValidationTooltip: {
+      errorBackground: 'lineColor',
+      errorBorderColor: 'errorColor',
+      warningBackground: 'lineColor',
+      warningBorderColor: 'warningColor',
+    },
+    Counter: { background: 'accentColor', foreground: 'backgroundColor' },
+    Tag: { background: 'lineColor' },
+    TextField: { background: 'backgroundColor' },
+    TabbedPane: { underlineColor: 'accentColor', hoverColor: 'hoverBackground' },
+    DefaultTabs: { underlineColor: 'accentColor', hoverBackground: 'hoverBackground', background: 'panelColor' },
+    Editor: { background: 'backgroundColor', SearchField: { background: 'backgroundColor' } },
+    Panel: panel,
+    SidePanel: panel,
+    WelcomeScreen: { background: 'panelColor', SidePanel: panel, Projects: { background: 'backgroundColor', selectionBackground: 'selectionBackground' } },
+    Component: { focusColor: 'accentColor', focusedBorderColor: 'accentColor', errorFocusColor: 'errorColor', warningFocusColor: 'warningColor' },
+    FileColor: { Blue: '#1F3554', Green: '#1E3A2F', Orange: '#3D2E1C', Rose: '#3D1F2C', Violet: '#2D2547', Yellow: '#3A361E' },
+  };
+
+  return {
+    name: p.name,
+    dark: true,
+    author: 'urtaav',
+    editorScheme: `/${fileBase(p)}.xml`,
+    colors,
+    ui,
+  };
+}
